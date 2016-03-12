@@ -25,18 +25,15 @@ void append(entry *pHead[],char lastName[])
     unsigned long i;
     i = djb2_hash((unsigned char *)lastName)%SIZE_OF_TABLE;
 
-    if(pHead[i]==NULL)
-    {
-	pHead[i] = (entry *) malloc(sizeof(entry));
-	pHead[i]->pNext = NULL;
-	strcpy(pHead[i]->lastName,lastName);
-	pHead[i]->pDetail = NULL;
-    }
-    else
-    {
-	for(e=pHead[i];e->pNext!=NULL;e=e->pNext);
-	e->pNext = (entry *) malloc(sizeof(entry));
-	e = e->pNext;
+    if(pHead[i]==NULL) {
+        pHead[i] = (entry *) malloc(sizeof(entry));
+        pHead[i]->pNext = NULL;
+        strcpy(pHead[i]->lastName,lastName);
+        pHead[i]->pDetail = NULL;
+    } else {
+        for(e=pHead[i]; e->pNext!=NULL; e=e->pNext);
+        e->pNext = (entry *) malloc(sizeof(entry));
+        e = e->pNext;
         strcpy(e->lastName, lastName);
         e->pNext = NULL;
         e->pDetail = NULL;
@@ -46,13 +43,12 @@ void append(entry *pHead[],char lastName[])
 
 unsigned long djb2_hash(unsigned char *str)
 {
-	unsigned long hash = 5381;
-	int c;
+    unsigned long hash = 5381;
+    int c;
 
-	while((c = *str++))
-	{
-	    hash = ((hash<<5)+hash)+c;   //hash*33+c
-	}
+    while((c = *str++)) {
+        hash = ((hash<<5)+hash)+c;   //hash*33+c
+    }
 
-	return hash;
+    return hash;
 }

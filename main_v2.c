@@ -39,9 +39,9 @@ int main(int argc, char *argv[])
 
     /* build the entry */
     entry *pHead[SIZE_OF_TABLE] ,*e;
-    for(j=0;j<SIZE_OF_TABLE;j++)
-	pHead[j] = NULL;
-    
+    for(j=0; j<SIZE_OF_TABLE; j++)
+        pHead[j] = NULL;
+
     printf("size of entry : %lu bytes\n", sizeof(entry));
 
 #if defined(__GNUC__)
@@ -90,14 +90,12 @@ int main(int argc, char *argv[])
     printf("execution time of append() : %lf sec\n", cpu_time1);
     printf("execution time of findName() : %lf sec\n", cpu_time2);
 
-    for(i=0;i<SIZE_OF_TABLE;i++)
-    {
-	while(pHead[i])
-	{
-	    e = pHead[i]->pNext;
-	    free(pHead[i]);
-	    pHead[i] = e;
-	}
+    for(i=0; i<SIZE_OF_TABLE; i++) {
+        while(pHead[i]) {
+            e = pHead[i]->pNext;
+            free(pHead[i]);
+            pHead[i] = e;
+        }
     }
 
     return 0;
